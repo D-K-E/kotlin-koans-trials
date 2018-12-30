@@ -3,6 +3,7 @@ package i_introduction._7_Nullable_Types
 import util.TODO
 import util.doc7
 
+/*
 fun test() {
     val s: String = "this variable cannot store null references"
     val q: String? = null
@@ -11,6 +12,7 @@ fun test() {
     val i: Int? = q?.length      // null
     val j: Int = q?.length ?: 0  // 0
 }
+*/
 
 fun todoTask7(client: Client?, message: String?, mailer: Mailer): Nothing = TODO(
     """
@@ -25,7 +27,11 @@ fun todoTask7(client: Client?, message: String?, mailer: Mailer): Nothing = TODO
 fun sendMessageToClient(
         client: Client?, message: String?, mailer: Mailer
 ) {
-    todoTask7(client, message, mailer)
+    val pinfo: PersonalInfo? = client?.personalInfo
+    val email: String? = pinfo?.email
+    if ( message != null && email != null){
+        mailer.sendMessage(email, message)
+    }
 }
 
 class Client (val personalInfo: PersonalInfo?)
